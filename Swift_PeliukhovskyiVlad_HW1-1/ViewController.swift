@@ -12,6 +12,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
         var randomNumbers = [Int]()
         for i in 1...10 {
             var randomNumber: Int
@@ -46,7 +47,6 @@ class ViewController: UIViewController {
         //3
 
         var sum = 0
-
         for number in randomNumbers {
             sum += number
         }
@@ -79,7 +79,7 @@ class ViewController: UIViewController {
 
         //6
 
-        var calendar: [Int: [String]] = [:]
+        var calendar = [Int: [String]]()
         for year in 1970...2022{
             calendar[year] = months
         }
@@ -88,19 +88,27 @@ class ViewController: UIViewController {
 
         //7
 
-        let myMonth = "Мій місяць"
-
-        for year in 1970...2022 {
-            calendar[year] = months
-            calendar[year]?.append(myMonth)
+        for (year, _) in calendar {
+            calendar[year]?.append("Мій місяць")
         }
 
         print(calendar)
 
         //8*
-
-
-
+        
+        var days = [Int]()
+        for day in 1...31 {
+            days.append(day)
+        }
+        var calendarPro = [Int : [String: [Int]]] ()
+        for (year, months) in calendar {
+            var monthDictionary = [String: [Int]]()
+            for month in months {
+                monthDictionary[month] = days
+        }
+            calendarPro[year] = monthDictionary
+        }
+       
         //9
 
         let a = Int.random(in: -10...10)
@@ -123,8 +131,14 @@ class ViewController: UIViewController {
         }
 
         //10
-        
+
+        let phrase = "Привіт, світ! Чудово!"
+        let words = phrase.components(separatedBy: " ")
+        print(words.first!)
+        print(words.last!.trimmingCharacters(in: .punctuationCharacters))
+
         //11
+        
         func batteryStatus(percent: Int) -> String {
             switch percent {
             case 100:
@@ -142,9 +156,6 @@ class ViewController: UIViewController {
         let percent = 30
         let message = batteryStatus(percent: percent)
         print(message)
-
-
-
 
     }
     
